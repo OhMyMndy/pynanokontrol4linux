@@ -1,3 +1,4 @@
 pulsectl-asyncio
 python-rtmidi
 dbus-next
+pyyaml

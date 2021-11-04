@@ -1,0 +1,23 @@
+
+
+
+buttons:
+  - name: play
+    note: 41
+    light-on: 127
+    light-off: 0
+    command: [playerctl, -p, spotify, play]
+
+  - name: pause
+    note: 42
+    light-on: 127
+    light-off: 0
+    command: [playerctl, -p, spotify, pause]
+
+
+sliders:
+  - name: spotify volume
+    note: 0
+    command: input-volume
+    matches: # matches pulse input sink name
+      - Spotify
