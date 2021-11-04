@@ -39,14 +39,14 @@ async def main():
 
     for i in range(0, midiin.get_port_count()):
         port_name = midiin.get_port_name(i)
-        if port_name.find("nanoKONTROL2") != -1:
+        if port_name.find(config['device-name']) != -1:
             print(f"Opening in port with index {i} and name {port_name}")
             midiin.open_port(i)
 
 
     for i in range(0, midiout.get_port_count()):
         port_name = midiout.get_port_name(i)
-        if port_name.find("nanoKONTROL2") != -1:
+        if port_name.find(config['device-name']) != -1:
             print(f"Opening out port with index {i} and name {port_name}")
             midiout.open_port(i)
 
