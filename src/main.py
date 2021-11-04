@@ -60,7 +60,7 @@ async def main():
     async def refresh_sinks():
         sinks = {}
         for sink in await pulse.sink_input_list():
-            sinks[sink.proplist['application.name']] = sink
+            sinks[sink.proplist['application.process.binary']] = sink
         return sinks
   
     with midiin:
