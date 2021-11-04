@@ -1,3 +1,5 @@
+device-name: nanoKONTROL2
+
 init:
   - name: Lights off
     lights-off:
