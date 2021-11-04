@@ -92,10 +92,15 @@ async def main():
                 for button in config['buttons']:
                     if button['note'] == note:
                         print(f"Doing something for note {note}: {value} {slider}")
-                        if 'light-on' in button:
-                            light_on(midiout, button['light-on'])
-                        if 'light-off' in button:
-                            light_off(midiout, button['light-off'])
+                      
+                        if 'lights-off' in button:
+                            for lightoff in button['lights-off']:
+                                light_off(midiout, lightoff)
+
+                        if 'lights-on' in button:
+                            for lighton in button['lights-on']:
+                                light_on(midiout, lighton)
+
                         if 'command' in button:
                             subprocess.run(button['command'])
 

@@ -4,14 +4,16 @@
 buttons:
   - name: play
     note: 41
-    light-on: 127
-    light-off: 0
+    lights-on:
+      - 41
+    lights-off:
+      - 42
     command: [playerctl, -p, spotify, play]
 
   - name: pause
     note: 42
-    light-on: 127
-    light-off: 0
+    lights-off:
+      - 41
     command: [playerctl, -p, spotify, pause]
 
 
