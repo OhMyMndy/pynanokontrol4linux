@@ -56,11 +56,13 @@ async def main():
 
 
     input_sinks = {}
-    
-    for sink in await pulse.sink_input_list():
-        input_sinks[sink.name] = sink
 
-
+    async def refresh_sinks():
+        sinks = {}
+        for sink in await pulse.sink_input_list():
+            sinks[sink.proplist['application.name']] = sink
+        return sinks
+  
     with midiin:
 
 
@@ -101,8 +103,10 @@ async def main():
         while True:
             message = midiin.get_message()
             if message:
-                pprint(message)
+                input_sinks = await refresh_sinks()
 
+                print(input_sinks)
+                # print(message)
                 ((channel, note, value), duration) = message
 
 
@@ -134,7 +138,7 @@ async def main():
 
                         if 'command' in button:
                             subprocess.run(button['command'])
-
+            
              
                 
 

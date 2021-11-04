@@ -9,6 +9,8 @@ init:
       - 41
     when: [playerctl, -p, spotify, status]
     equals: Playing
+    interval: 10
+
 
 buttons:
   - name: play
@@ -30,5 +32,11 @@ sliders:
   - name: spotify volume
     note: 0
     command: input-volume
-    matches: # matches pulse input sink name
-      - Spotify
+    matches: # matches proplist.application.name
+      - spotify
+
+  - name: Browser volume
+    note: 1
+    command: input-volume
+    matches: # matches proplist.application.name
+      - Chromium
