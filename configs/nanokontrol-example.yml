@@ -1,5 +1,14 @@
+init:
+  - name: Lights off
+    lights-off:
+      - 41
+      - 42
 
-
+  - name: set play active
+    lights-on:
+      - 41
+    when: [playerctl, -p, spotify, status]
+    equals: Playing
 
 buttons:
   - name: play

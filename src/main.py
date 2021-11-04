@@ -63,8 +63,40 @@ async def main():
 
     with midiin:
 
-        light_off(midiout, 41)
-        light_off(midiout, 42)
+
+        for init in config['init']:
+            if 'when' in init:
+                result = subprocess.run(init['when'], capture_output=True)
+
+                if 'equals' in init:
+                    if str(result.stdout.strip().decode('utf-8')) == init['equals']:
+                        if 'lights-on' in init:
+                            for light in init['lights-on']:
+                                light_on(midiout, light)
+
+                        if 'lights-off' in init:
+                            for light in init['lights-off']:
+                                light_off(midiout, light)
+
+                elif 'not-equals' in init:
+                    if str(result.stdout.strip().decode('utf-8')) != init['not-equals']:
+                        if 'lights-on' in init:
+                            for light in init['lights-on']:
+                                light_on(midiout, light)
+
+                        if 'lights-off' in init:
+                            for light in init['lights-off']:
+                                light_off(midiout, light)
+            else:
+                print(f"{init['name']}")
+                if 'lights-on' in init:
+                    for light in init['lights-on']:
+                        light_on(midiout, light)
+
+                if 'lights-off' in init:
+                    for light in init['lights-off']:
+                        light_off(midiout, light)
+
 
         while True:
             message = midiin.get_message()
@@ -72,7 +104,6 @@ async def main():
                 pprint(message)
 
                 ((channel, note, value), duration) = message
-
 
 
                 # Show button being pressed
