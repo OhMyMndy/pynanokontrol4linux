@@ -39,4 +39,10 @@ sliders:
     note: 1
     command: input-volume
     matches: # matches proplist.application.name
-      - Chromium
+      - vivaldi-bin
+
+  - name: Chat volume
+    note: 2
+    command: input-volume
+    matches: # matches proplist.application.name
+      - signal-desktop
